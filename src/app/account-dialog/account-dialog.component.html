@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>Account</h1>
+<div mat-dialog-content>
+  <p>First name</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="accountData.firstName">
+  </mat-form-field>
+
+  <p>Last name</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="accountData.lastName">
+  </mat-form-field>
+
+  <p>Email</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="accountData.email">
+  </mat-form-field>
+
+  <p>Birth date</p>
+  <mat-form-field>
+    <input matInput
+          [matDatepicker]="picker"
+          [(ngModel)]="accountData.birthDate"
+          placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSaveClick()" cdkFocusInitial>Save</button>
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+</div>

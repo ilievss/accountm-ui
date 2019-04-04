@@ -1,0 +1,55 @@
+<div class="container">
+    <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Modal title</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>One fine body&hellip;</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Birth Date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of accounts">
+        <th>{{ account.id }}</th>
+        <td>{{ account.firstName }}</td>
+        <td>{{ account.lastName }}</td>
+        <td>{{ account.email }}</td>
+        <td>{{ account.birthDate | date }}</td>
+        <td><button type="button" class="btn btn-light" (click)="openEditDialog(account)"><i class="fas fa-edit"
+              style="color: blue"></i></button></td>
+        <td><button type="button" class="btn btn-light" (click)="deleteAccount(account.id)"><i class="fas fa-times"
+              style="color: red"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button type="button" class="btn btn-primary" (click)="openCreateDialog()">New Account</button>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+      (pageChange)="populateList(page, pageSize)">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (change)="populateList(page, pageSize)">
+      <option [ngValue]="5">5 items per page</option>
+      <option [ngValue]="10">10 items per page</option>
+    </select>
+  </div>
+</div>
